@@ -32,6 +32,6 @@ class SendTaskNotificationCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->cron('5 * * * *');
+        $schedule->command(static::class)->everyFiveMinutes();
     }
 }

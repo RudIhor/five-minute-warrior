@@ -13,11 +13,11 @@ final class EntryRepository
     public function getCurrentEntry(): EntryViewModel
     {
         $now = CarbonImmutable::now(AppServiceProvider::TIMEZONE);
-        $startAt = $now->floorMinutes(5)->format('H:i:s');
-        $endsAt = $now->ceilMinutes(5)->format('H:i:s');
+        $startsAt = $now->floorMinutes(5);
+        $endsAt = $now->ceilMinutes(5);
         $entry = Entry::query()
-            ->where('starts_at', $startAt)
-            ->where('ends_at', $endsAt)
+            ->where('starts_at', '=', $startsAt)
+            ->where('ends_at', '=', $endsAt)
             ->first();
 
         return EntryViewModel::fromModel($entry);

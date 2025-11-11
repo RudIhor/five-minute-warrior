@@ -59,7 +59,7 @@ class ShowScheduleCommand extends Command
         if ($entry->is_current) {
             $tableCellStyle = new TableCellStyle(['fg' => Color::RED]);
         } elseif ($entry->is_future) {
-            $tableCellStyle = new TableCellStyle(['fg' => Color::GREEN]);
+            $tableCellStyle = new TableCellStyle(['fg' => Color::CYAN]);
         }
 
         return [
