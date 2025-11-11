@@ -15,11 +15,17 @@ final class StoreEntryLogAction
     public function run(StoreEntryDTO $dto): void
     {
         DB::transaction(function () use ($dto) {
-            $entry = new Entry();
+            $lastEntry = Entry::query()->orderByDesc('ends_at')->first();
 
+            $entry = new Entry();
             $entry->task = $dto->task;
-            $entry->starts_at = $dto->starts_at;
-            $entry->ends_at = $dto->ends_at;
+            if (empty($lastEntry)) {
+                $entry->starts_at = $dto->starts_at;
+                $entry->ends_at = $dto->ends_at;
+            } else {
+                $entry->starts_at = $lastEntry->starts_at->addMinutes(5);
+                $entry->ends_at = $lastEntry->ends_at->addMinutes(5);
+            }
 
             $entry->save();
         });

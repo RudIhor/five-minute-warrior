@@ -20,6 +20,6 @@ class AddEntryCommand extends Command
     {
         $action->run(new StoreEntryDTO($this->argument('task')));
 
-        $this->call('schedule');
+        $this->call('show');
     }
 }
