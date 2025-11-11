@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    public const string TIMEZONE = 'Europe/Kyiv';
+
     /**
      * Bootstrap any application services.
      */
@@ -19,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Model::unguard();
     }
 }
