@@ -20,11 +20,13 @@ class SendTaskNotificationCommand extends Command
     {
         $currentEntry = $repository->getCurrentEntry();
 
-        TerminalNotifierBuilder::make()
-            ->setTitle($currentEntry->task)
-            ->setMessage($currentEntry->time)
-            ->setSound()
-            ->exec();
+        if (!empty($currentEntry)) {
+            TerminalNotifierBuilder::make()
+                ->setTitle($currentEntry->task)
+                ->setMessage($currentEntry->time)
+                ->setSound()
+                ->exec();
+        }
     }
 
     /**
@@ -32,6 +34,6 @@ class SendTaskNotificationCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->everyFiveMinutes();
+        $schedule->command(static::class)->everyMinute();
     }
 }

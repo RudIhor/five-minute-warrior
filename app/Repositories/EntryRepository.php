@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 final class EntryRepository
 {
-    public function getCurrentEntry(): EntryViewModel
+    public function getCurrentEntry(): ?EntryViewModel
     {
         $now = CarbonImmutable::now(AppServiceProvider::TIMEZONE);
         $startsAt = $now->floorMinutes(5);
@@ -19,6 +19,10 @@ final class EntryRepository
             ->where('starts_at', '=', $startsAt)
             ->where('ends_at', '=', $endsAt)
             ->first();
+
+        if (empty($entry)) {
+            return null;
+        }
 
         return EntryViewModel::fromModel($entry);
     }
