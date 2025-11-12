@@ -14,8 +14,8 @@ final class EntryViewModel extends Data
     public function __construct(
         public string $task,
         public string $time,
-        public Optional|bool $is_future,
-        public Optional|bool $is_current,
+        public Optional|int $is_future,
+        public Optional|int $is_current,
     ) {
     }
 
