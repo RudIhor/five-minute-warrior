@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Repositories\EntryRepository;
@@ -12,14 +14,13 @@ use Symfony\Component\Console\Helper\TableCellStyle;
 use Symfony\Component\Console\Output\OutputInterface;
 use Termwind\Enums\Color;
 
-class ShowScheduleCommand extends Command
+final class ShowScheduleCommand extends Command
 {
+    /** @var string[] */
+    private const array TABLE_HEADERS = ['Time', 'Task'];
     protected $signature = 'show';
 
     protected $description = 'Display the current schedule.';
-
-    /** @var string[] */
-    private const array TABLE_HEADERS = ['Time', 'Task'];
 
     /**
      * Execute the console command.

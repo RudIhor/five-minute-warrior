@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Builders\TerminalNotifierBuilder;
@@ -7,7 +9,7 @@ use App\Repositories\EntryRepository;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-class SendTaskNotificationCommand extends Command
+final class SendTaskNotificationCommand extends Command
 {
     protected $signature = 'send-notification';
 
@@ -34,6 +36,6 @@ class SendTaskNotificationCommand extends Command
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->everyMinute();
+        $schedule->command(self::class)->everyMinute();
     }
 }

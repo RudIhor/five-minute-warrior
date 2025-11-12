@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Actions\Entry\StoreEntryLogAction;
@@ -7,7 +9,7 @@ use App\DTOs\Entry\StoreEntryDTO;
 use LaravelZero\Framework\Commands\Command;
 use Throwable;
 
-class AddEntryCommand extends Command
+final class AddEntryCommand extends Command
 {
     protected $signature = 'add {task}';
 

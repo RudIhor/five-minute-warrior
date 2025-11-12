@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repositories;
 
 use App\Models\Entry;
@@ -72,6 +74,6 @@ ORDER BY ts.start_time;
 EOF
         );
 
-        return array_map(fn($item) => EntryViewModel::fromStdClass($item), $results);
+        return array_map(fn ($item) => EntryViewModel::fromStdClass($item), $results);
     }
 }
