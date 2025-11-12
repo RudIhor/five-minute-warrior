@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -57,4 +59,5 @@ return [
         App\Providers\AppServiceProvider::class,
     ],
 
+    'timezone' => 'Europe/Kyiv',
 ];

@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/pint": "^1.25.1",
+        "laravel/pint": "^1.25",
         "mockery/mockery": "^1.6.12",
         "pestphp/pest": "^3.8.4|^4.1.2"
     },
@@ -49,5 +49,9 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "bin": ["application"]
+    "bin": ["application"],
+    "scripts": {
+        "lint": "pint",
+        "test:lint": "pint --test"
+    }
 }
