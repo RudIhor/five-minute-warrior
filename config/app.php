@@ -57,4 +57,5 @@ return [
         App\Providers\AppServiceProvider::class,
     ],
 
+    'timezone' => 'Europe/Kyiv',
 ];

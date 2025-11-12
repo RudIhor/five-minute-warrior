@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Entry;
-use App\Providers\AppServiceProvider;
 use App\ViewModels\Entry\EntryViewModel;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +11,7 @@ final class EntryRepository
 {
     public function getCurrentEntry(): ?EntryViewModel
     {
-        $now = CarbonImmutable::now(AppServiceProvider::TIMEZONE);
+        $now = CarbonImmutable::now(config('app.timezone'));
         $startsAt = $now->floorMinutes(5);
         $endsAt = $now->ceilMinutes(5);
         $entry = Entry::query()
@@ -68,6 +67,7 @@ FROM time_slots ts
          LEFT JOIN entries e
                    ON time(e.starts_at) = time(ts.start_time)
                        AND time(e.ends_at) = time(ts.end_time)
+                       AND e.starts_at >= datetime('now', 'localtime', 'start of day')
 ORDER BY ts.start_time;
 EOF
         );

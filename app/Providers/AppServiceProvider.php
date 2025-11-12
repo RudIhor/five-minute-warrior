@@ -7,9 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-
-    public const string TIMEZONE = 'Europe/Kyiv';
-
     /**
      * Bootstrap any application services.
      */

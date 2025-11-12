@@ -19,7 +19,7 @@ final class StoreEntryLogAction
 
             $entry = new Entry();
             $entry->task = $dto->task;
-            if (empty($lastEntry)) {
+            if (empty($lastEntry) || ($lastEntry->starts_at->isPast() && $lastEntry->ends_at->isPast())) {
                 $entry->starts_at = $dto->starts_at;
                 $entry->ends_at = $dto->ends_at;
             } else {
